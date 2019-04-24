@@ -1,5 +1,8 @@
 FROM python:alpine3.7
 
+ARG COMMIT
+ENV COMMIT=${COMMIT}
+
 EXPOSE 5000
 WORKDIR /app
 COPY requirements.txt /app/
