@@ -4,12 +4,12 @@ import time
 import os
 
 app = Flask(__name__)
-_jRet = lambda k: Response(k, mimetype="application/json")
+_jRet = lambda _k: Response(_k, mimetype="application/json")
 _getE = lambda _k: os.environ[_k] if _k in os.environ else ''
 
 @app.route("/")
 def alpha():
-    return _jRet('{"status":"OK"}')
+    return _jRet('{"status":"ok"}')
 
 @app.route("/delay/<value>")
 def beta(value):
@@ -18,7 +18,11 @@ def beta(value):
 
 @app.route("/version")
 def gamma():
-    return _jRet('{"version":1.2, "commit":"%s"}' % _getE('COMMIT'))
+    return _jRet('{"status":"ok", "version":1.2, "commit":"%s"}' % _getE('COMMIT'))
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return _jRet('{"status":"error"}'), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
