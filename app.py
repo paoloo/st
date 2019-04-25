@@ -18,7 +18,7 @@ def beta(value):
 
 @app.route("/version")
 def gamma():
-    return _jRet('{"status":"ok", "version":1.2, "commit":"%s"}' % _getE('COMMIT'))
+    return _jRet('{"status":"ok", "version":1.3, "commit":"%s"}' % _getE('COMMIT'))
 
 @app.errorhandler(404)
 def page_not_found(e):
