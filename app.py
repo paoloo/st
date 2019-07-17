@@ -19,7 +19,7 @@ def beta(value):
 
 @app.route("/version")
 def gamma():
-    return _jRet('{"status":"ok", "version":1.3, "commit":"%s"}' % _getE('COMMIT'))
+    return _jRet('{"status":"ok", "version":1.4, "commit":"%s"}' % _getE('COMMIT'))
 
 @app.route("/ulimits")
 def delta():
