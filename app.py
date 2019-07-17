@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import Response
+import resource
 import time
 import os
 
@@ -19,6 +20,11 @@ def beta(value):
 @app.route("/version")
 def gamma():
     return _jRet('{"status":"ok", "version":1.3, "commit":"%s"}' % _getE('COMMIT'))
+
+@app.route("/ulimits")
+def delta():
+    _soft, _hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+    return _jRet('{"status":"ok", "limits": {"soft":"%s", "hard":"%s"}}' % (_soft, _hard))
 
 @app.errorhandler(404)
 def page_not_found(e):
